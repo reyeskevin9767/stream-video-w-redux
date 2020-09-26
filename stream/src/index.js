@@ -15,3 +15,13 @@ ReactDOM.render(
   </Provider>,
   document.querySelector('#root')
 );
+
+// Rest-ful conventions - standardize system of routes 
+// and request methods to operate all these actions
+
+// Action
+// 1 - List all records (GET) (Route -> /streams)
+// 2 - Get on unique record (GET) (Route -> /streams/:id)
+// 3 - Create a record (POST) (Route -> /streams)
+// 4 - Update a record (PUT) (Route -> /streams/:id)
+// 5 - Delete a record (DELETE) (Route -> /streams/id)
