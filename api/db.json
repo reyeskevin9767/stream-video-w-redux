@@ -1,3 +1,14 @@
 {
-  "streams": []
+  "streams": [
+    {
+      "title": "adsfa",
+      "description": "asdfa",
+      "id": 1
+    },
+    {
+      "title": "adsfa",
+      "description": "asdfa",
+      "id": 2
+    }
+  ]
 }

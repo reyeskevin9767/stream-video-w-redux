@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+
+// Connect to action creator
 import { connect } from 'react-redux';
 import { createStream } from '../../actions';
 
@@ -29,9 +31,10 @@ class StreamCreate extends React.Component {
   };
 
   // formValues hold the values that were submitted
-  onSubmit(formValues) {
-    console.log(formValues);
-  }
+  onSubmit = (formValues) => {
+    // Pass all formValues to action creator
+    this.props.createStream(formValues);
+  };
 
   // handleSubmit from redux
   render() {
@@ -69,7 +72,9 @@ const validate = (formValues) => {
 
 // streamCreate is where all the data is stored
 // validate is passed to formProps from renderInput
-export default reduxForm({
+const formWrapped = reduxForm({
   form: 'streamCreate',
   validate,
 })(StreamCreate);
+
+export default connect(null, { createStream })(formWrapped);
