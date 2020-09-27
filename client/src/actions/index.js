@@ -59,9 +59,12 @@ export const fetchStream = (id) => async (dispatch) => {
 // Get edit stream
 export const editStream = (id, formValues) => async (dispatch) => {
   // Rest-ful Convention
-  const response = await streams.put(`/streams/${id}`, formValues);
+  // Put -> Updates all properties of a record
+  // Patch -> Update only the formvalues (update some properties of a record)
+  const response = await streams.patch(`/streams/${id}`, formValues);
 
   dispatch({ type: EDIT_STREAM, payload: response.data });
+  history.push('/');
 };
 
 // Delete Stream
