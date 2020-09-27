@@ -1,4 +1,5 @@
 import streams from '../apis/streams';
+import history from '.././history';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -23,12 +24,20 @@ export const signOut = () => {
 };
 
 // Create Stream
-export const createStream = (formValues) => async (dispatch) => {
+// getState -> gets information from store
+export const createStream = (formValues) => async (dispatch, getState) => {
+  // Get user id from auth store
+  const { userId } = getState().auth;
+
   // Rest-ful Convention
-  const response = await streams.post('/streams', formValues);
+  const response = await streams.post('/streams', { ...formValues, userId });
 
   // Send data to reducer
   dispatch({ type: CREATE_STREAM, payload: response.data });
+
+  // Programmatic navigation back to the root route
+  // Hard to do with action creator, create a new history object
+  history.push('/');
 };
 
 // Get all streams

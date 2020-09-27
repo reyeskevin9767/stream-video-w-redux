@@ -1,20 +1,21 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import StreamCreate from './streams/StreamCreate';
 import StreamEdit from './streams/StreamEdit';
 import StreamDelete from './streams/StreamDelete';
 import StreamList from './streams/StreamList';
 import StreamShow from './streams/StreamShow';
 import Header from './Header';
+import history from '../history';
 
 // react-router-dom -> Navigation for dom-based apps
 // React Router -> Only cares after the domain url
-// BrowserRouter -> Listens to 'history' for changes to the url
+// BrowserRouter (Router) -> Listens to 'history' for changes to the url
 
 // Navigation
 // Cannot use archor tags, as its dumps all react/redux state data
 // Need to use Link to nagivate between pages,
-// React Router prevents the browsert from navigating to the new page
+// React Router prevents the browser from navigating to the new page
 // and fetching new index.html file
 
 // OAuth Authentication
@@ -24,7 +25,6 @@ import Header from './Header';
 // 4. Trust the outside provider to correctly handle identification of a user
 // 5. OAuth can be used for user identification in our app and our app making
 // 6. actions on behalf of user
-
 
 //OAuth for JS Broswer Apps
 // 1. Results in a 'token' that a broswer app can use to make requests
@@ -36,7 +36,7 @@ import Header from './Header';
 const App = () => {
   return (
     <div className="ui container">
-      <BrowserRouter>
+      <Router history={history}>
         <Header />
         <div>
           <Route path="/" exact component={StreamList} />
@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/streams/delete" exact component={StreamDelete} />
           <Route path="/streams/show" exact component={StreamShow} />
         </div>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };
